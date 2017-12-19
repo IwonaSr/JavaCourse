@@ -1,16 +1,16 @@
-Titile of the course: Complete Java Masterclass
+**Titile of the course:** "Complete Java Masterclass"
 
 
-Selected aspects:
+**Selected aspects:**
 
-1. Composition:
+**1. Composition:**
 
 - difference between composition and inheritance
 
 - examples of composition
 
 
-2. Lambda expressions:
+**2. Lambda expressions:**
 
 - Introduction to lambda expression
 
