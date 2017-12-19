@@ -1,4 +1,4 @@
-package com.oop;
+package com.oop.composition;
 
 public class PC {
     private Case theCase;

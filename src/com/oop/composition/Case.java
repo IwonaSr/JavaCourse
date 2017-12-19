@@ -1,6 +1,4 @@
-package com.oop;
-
-import Dimensions.Dimensions;
+package com.oop.composition;
 
 public class Case {
 
