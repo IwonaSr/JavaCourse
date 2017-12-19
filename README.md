@@ -1,5 +1,4 @@
-**Titile of the course:** "Complete Java Masterclass"
-
+**Complete Java Masterclass course**: https://www.udemy.com/java-the-complete-java-developer-course/
 
 **Selected aspects:**
 
