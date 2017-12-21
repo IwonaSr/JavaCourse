@@ -1,6 +1,7 @@
-package collection_BinarySearch;
+package collection_CollectionsListMethods;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Theatre {
 
@@ -9,7 +10,7 @@ public class Theatre {
 //    private List<Seat> seats = new TreeSet<>();
 //    private Collection<Seat> seats = new LinkedHashSet<>();
 //    private Collection<Seat> seats = new ArrayList<>();
-    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> seats = new ArrayList<>();
 
     public Theatre(String theatreName, int numRows, int seatsPerRow) {
         this.theatreName = theatreName;
@@ -71,7 +72,7 @@ public class Theatre {
         }
     }
 
-    private class Seat implements Comparable<Seat> {
+    public class Seat implements Comparable<Seat> {
         private final String seatNumber;
         private boolean reserved = false;
 
@@ -107,6 +108,8 @@ public class Theatre {
         public String getSeatNumber() {
             return seatNumber;
         }
+
+
 
 
     }
