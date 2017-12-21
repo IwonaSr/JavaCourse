@@ -1,23 +1,38 @@
-package collection_CollectionsListMethods;
+package collection_ComparableAndComparator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Theatre {
 
     private final String theatreName;
-    //    private List<Seat> seats = new LinkedList<>();
-//    private List<Seat> seats = new TreeSet<>();
-//    private Collection<Seat> seats = new LinkedHashSet<>();
-//    private Collection<Seat> seats = new ArrayList<>();
-    public List<Seat> seats = new ArrayList<>();
+    private List<Seat> seats = new ArrayList<>();
+
+    static final Comparator<Seat> PRICE_ORDER = new Comparator<Seat>() {
+        @Override
+        public int compare(Seat s1, Seat s2) {
+            if (s1.getPrice() < s2.getPrice()) {
+                return -1;
+            } else if (s1.getPrice() > s2.getPrice()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
 
     public Theatre(String theatreName, int numRows, int seatsPerRow) {
         this.theatreName = theatreName;
         int lastRow = 'A' + (numRows - 1);
         for (char row = 'A'; row <= lastRow; row++) {
             for (int seatNum = 1; seatNum <= seatsPerRow; seatNum++) {
-                Seat seat = new Seat(row + String.format("%02d", seatNum));
+                double price = 12.00;
+
+                if((row < 'D') && (seatNum >=4 && seatNum <=9)){
+                    price = 14.00;
+                }else if(row > 'F' || (seatNum <4 || seatNum >9)){
+                    price = 7.00;
+                }
+                Seat seat = new Seat(row + String.format("%02d", seatNum), price);
                 seats.add(seat);
             }
 
@@ -28,56 +43,33 @@ public class Theatre {
         return theatreName;
     }
 
-//    public boolean reserveSeat(String seatNumber) {
-//        Seat requestedSeat = new Seat(seatNumber);
-//        //The fastest way to find item in sorted list
-//        //It works by checking the element in the midpoint of the list
-//        //if the middle element is greater than the item that we're looking for in the first psrt of the list
-//        // until element is not founded the list is reduced to half each time
-//        int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
-//        if (foundSeat >= 0) {
-//            return seats.get(foundSeat).reserve();
-//        } else {
-//            System.out.println("There is no seat " + seatNumber);
-//            return false;
-//        }
-//    }
-
     public boolean reserveSeat(String seatNumber) {
-
-        int low = 0;
-        int high = seats.size() - 1;
-
-        while (low <= high) {
-            System.out.println(".");
-            int mid = (low + high) / 2;
-            Seat midVal = seats.get(mid);
-
-            int cmp = midVal.getSeatNumber().compareTo(seatNumber);
-            if (cmp < 0) {
-                low = mid + 1;
-            } else if (cmp > 0) {
-                high = mid - 1;
-            } else {
-                return seats.get(mid).reserve();
-            }
+        Seat requestedSeat = new Seat(seatNumber, 0);
+        //The fastest way to find item in sorted list
+        //It works by checking the element in the midpoint of the list
+        //if the middle element is greater than the item that we're looking for in the first psrt of the list
+        // until element is not founded the list is reduced to half each time
+        int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
+        if (foundSeat >= 0) {
+            return seats.get(foundSeat).reserve();
+        } else {
+            System.out.println("There is no seat " + seatNumber);
+            return false;
         }
-        System.out.println("There is no seat " + seatNumber);
-        return false;
     }
 
-    public void getSeats() {
-        for (Seat seat : seats) {
-            System.out.println(seat.getSeatNumber());
-        }
+    public Collection<Seat> getSeats() {
+       return seats;
     }
 
     public class Seat implements Comparable<Seat> {
         private final String seatNumber;
+        private double price;
         private boolean reserved = false;
 
-        private Seat(String seatNumber) {
+        Seat(String seatNumber, double price) {
             this.seatNumber = seatNumber;
+            this.price = price;
         }
 
         @Override
@@ -109,6 +101,8 @@ public class Theatre {
             return seatNumber;
         }
 
-
+        public double getPrice() {
+            return price;
+        }
     }
 }
