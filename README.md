@@ -24,3 +24,27 @@
 - Chaining java.util.function Functions
 
 - Streams
+
+- Intermediate and Terminal Operations
+
+- Flatmap & Lambda Best Practices
+
+- Lambda Challenge Part 1
+
+- Lambda Challenge Part 2
+
+**3. Collections**
+
+- Collections Overview
+
+- Binary Search
+
+- Collection List Methods
+
+- Comparable and Comparator
+
+- Maps
+
+- Immutable Classes
+
+- Sorted Collections
